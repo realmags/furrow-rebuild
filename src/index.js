@@ -1,14 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+// import "./index.css";
+// import App from "./App";
+import IndexPage from "./pages/index";
+// import "./normalize.css";
+import reportWebVitals from "./reportWebVitals";
 
+// TODO: WRAP APP WITH GLOBAL PROVIDER, SEE PART 1 VIDEO
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <IndexPage />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
