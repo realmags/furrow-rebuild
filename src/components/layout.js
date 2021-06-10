@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-// styled components
+// Styled components
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 // * For some reason, normalize does not work
 import { normalize } from "styled-normalize";
+
+// Components
+import Header from "./header";
+
+import { useGlobalStateContext } from "../context/globalContext";
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -35,17 +40,21 @@ const Layout = ({ children }) => {
   const darkTheme = {
     background: "#000",
     text: "#fff",
+    red: "#ea291e",
   };
 
   const lightTheme = {
     background: "#fff",
     text: "#000",
+    red: "#ea291e",
   };
 
+  const { currentTheme } = useGlobalStateContext();
+
   return (
-    <ThemeProvider theme={darkTheme}>
-      {/* <Normalize /> */}
+    <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
+      <Header />
       <main>{children}</main>
     </ThemeProvider>
   );

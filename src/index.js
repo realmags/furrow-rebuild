@@ -3,13 +3,15 @@ import ReactDOM from "react-dom";
 // import "./index.css";
 // import App from "./App";
 import IndexPage from "./pages/index";
-// import "./normalize.css";
+import { GlobalProvider } from "./context/globalContext";
 import reportWebVitals from "./reportWebVitals";
 
 // TODO: WRAP APP WITH GLOBAL PROVIDER, SEE PART 1 VIDEO
 ReactDOM.render(
   <React.StrictMode>
-    <IndexPage />
+    <GlobalProvider>
+      <IndexPage />
+    </GlobalProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
