@@ -9,8 +9,12 @@ import { normalize } from "styled-normalize";
 
 // Components
 import Header from "./header";
+import Cursor from "./customCursor";
 
-import { useGlobalStateContext } from "../context/globalContext";
+import {
+  useGlobalStateContext,
+  useGlobalDispatchContext,
+} from "../context/globalContext";
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -19,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     margin: 0;
     padding: 0;
-    /* cursor: none; */
+    cursor: none;
   }
 
   html {
@@ -49,12 +53,19 @@ const Layout = ({ children }) => {
     red: "#ea291e",
   };
 
-  const { currentTheme } = useGlobalStateContext();
+  const { currentTheme, cursorStyles } = useGlobalStateContext();
+  const dispatch = useGlobalDispatchContext();
+
+  const onCursor = (cursorType) => {
+    cursorType = (cursorStyles.includes(cursorType) && cursorType) || false;
+    dispatch({ type: "CURSOR_TYPE", cursorType: cursorType });
+  };
 
   return (
     <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
-      <Header />
+      <Cursor />
+      <Header onCursor={onCursor} />
       <main>{children}</main>
     </ThemeProvider>
   );

@@ -10,7 +10,7 @@ import {
   useGlobalDispatchContext,
 } from "../context/globalContext";
 
-function Header() {
+function Header({ onCursor }) {
   const { currentTheme } = useGlobalStateContext();
   const dispatch = useGlobalDispatchContext();
 
@@ -26,6 +26,8 @@ function Header() {
     window.localStorage.setItem("theme", currentTheme);
   }, [currentTheme]);
 
+  // TODO: INSTALL REACT-ROUTER-DOM AND ADD LINK TO LOGO
+
   return (
     <HeaderNav
       animate={{ y: 0, opacity: 1 }}
@@ -34,10 +36,17 @@ function Header() {
     >
       <Container>
         <Flex spaceBetween noHeight>
-          <Logo>
+          <Logo
+            onMouseEnter={() => onCursor("hovered")}
+            onMouseLeave={onCursor}
+          >
             {/* add LINK to homepage by importing react-router-dom */}
             <a href="#">FURR</a>
-            <span onClick={toggleTheme}></span>
+            <span
+              onClick={toggleTheme}
+              onMouseEnter={() => onCursor("pointer")}
+              onMouseLeave={onCursor}
+            ></span>
             <a href="#">W</a>
           </Logo>
           <Menu>
