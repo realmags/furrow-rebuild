@@ -10,6 +10,7 @@ import { normalize } from "styled-normalize";
 // Components
 import Header from "./header";
 import Cursor from "./customCursor";
+import Navigation from "./navigation";
 
 import {
   useGlobalStateContext,
@@ -56,6 +57,8 @@ const Layout = ({ children }) => {
   const { currentTheme, cursorStyles } = useGlobalStateContext();
   const dispatch = useGlobalDispatchContext();
 
+  const [toggleMenu, setToggleMenu] = useState(false);
+
   const onCursor = (cursorType) => {
     cursorType = (cursorStyles.includes(cursorType) && cursorType) || false;
     dispatch({ type: "CURSOR_TYPE", cursorType: cursorType });
@@ -64,8 +67,17 @@ const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
-      <Cursor />
-      <Header onCursor={onCursor} />
+      <Cursor toggleMenu={toggleMenu} />
+      <Header
+        onCursor={onCursor}
+        toggleMenu={toggleMenu}
+        setToggleMenu={setToggleMenu}
+      />
+      <Navigation
+        onCursor={onCursor}
+        toggleMenu={toggleMenu}
+        setToggleMenu={setToggleMenu}
+      />
       <main>{children}</main>
     </ThemeProvider>
   );
