@@ -3,6 +3,8 @@ import Layout from "../components/layout";
 
 // Components
 import HomeBanner from "../components/homepage/HomeBanner";
+import HomeContent from "../components/homepage/HomeContent";
+import HomeFeatured from "../components/homepage/HomeFeatured";
 
 import {
   useGlobalStateContext,
@@ -21,6 +23,8 @@ function IndexPage(props) {
   return (
     <Layout>
       <HomeBanner onCursor={onCursor} />
+      <HomeContent />
+      <HomeFeatured onCursor={onCursor} />
     </Layout>
   );
 }
