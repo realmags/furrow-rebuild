@@ -29,7 +29,7 @@ export const Logo = styled.div`
   }
 `;
 
-export const Menu = styled.div`
+export const Menu = styled(motion.div)`
   button {
     transform-origin: center;
     border: none;
